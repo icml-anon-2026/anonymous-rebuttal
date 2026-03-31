@@ -9,12 +9,35 @@
 
 <h1 style="text-align:center;">Additional Results</h1>
 
-<div style="text-align:center; margin-bottom:20px;">
-    <p>We provide additional visualizations in the following PDF:</p>
+<p style="text-align:center;">
+Additional qualitative and quantitative results supporting our claims.
+</p>
+
+<!-- PDF展示 -->
+<div style="display:flex; justify-content:center; margin-bottom:50px;">
+    <iframe src="fig.pdf" width="80%" height="800px"></iframe>
 </div>
 
-<div style="display:flex; justify-content:center;">
-    <iframe src="fig1.pdf" width="80%" height="800px"></iframe>
+<!-- Prompt展示 -->
+<h2 style="text-align:center;">Evaluation Prompt</h2>
+
+<div style="width:80%; margin:auto; background:#f6f8fa; padding:20px; border-radius:8px;">
+<pre style="white-space: pre-wrap; font-size:14px;">
+You are a math problem grader. Given a student's solution and the correct answer, determine if the solution contains the correct answer.
+
+Student's Solution:
+{solution}
+
+Correct Answer:
+{ground_truth}
+
+Instructions:
+1. Check if the student's solution arrives at the correct answer
+2. The answer format may differ (e.g., "3.14" vs "π", "1/2" vs "0.5"), but the value should be equivalent
+3. Respond with ONLY "CORRECT" or "INCORRECT"
+
+Your judgment:
+</pre>
 </div>
 
 </body>
