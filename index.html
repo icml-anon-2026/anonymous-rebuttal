@@ -3,27 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <title>Additional Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 1100px;
+            line-height: 1.6;
+            color: #111;
+            background: #fff;
+        }
+        h1, h2, h3 {
+            text-align: center;
+        }
+        p.center {
+            text-align: center;
+        }
+        .section {
+            margin-top: 50px;
+        }
+        .pdf-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .prompt-box, .example-box {
+            width: 85%;
+            margin: 20px auto 0 auto;
+            background: #f6f8fa;
+            padding: 20px 24px;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+        .note {
+            width: 85%;
+            margin: 0 auto;
+        }
+        pre {
+            white-space: pre-wrap;
+            font-size: 14px;
+            margin: 0;
+        }
+        ul {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .small-gap {
+            margin-top: 20px;
+        }
+        a {
+            color: #0969da;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
 
-<h1 style="text-align:center;">Additional Results</h1>
+    <h1>Additional Results</h1>
 
-<p style="text-align:center;">
-Additional qualitative and quantitative results supporting our claims.
-</p>
+    <p class="center">
+        Additional qualitative and quantitative results supporting our claims.
+    </p>
 
-<!-- PDF展示 -->
-<div style="display:flex; justify-content:center; margin-bottom:50px;">
-    <iframe src="fig1.pdf" width="80%" height="800px"></iframe>
-</div>
+    <div class="section">
+        <h2>Supplementary PDF</h2>
+        <p class="center">
+            <a href="fig1.pdf" target="_blank">Open the PDF directly</a>
+        </p>
 
-<!-- Prompt展示 -->
-<h2 style="text-align:center;">Evaluation Prompt</h2>
+        <div class="pdf-box">
+            <iframe src="fig1.pdf" width="85%" height="850px" style="border:1px solid #ddd; border-radius:8px;"></iframe>
+        </div>
+    </div>
 
-<div style="width:80%; margin:auto; background:#f6f8fa; padding:20px; border-radius:8px;">
-<pre style="white-space: pre-wrap; font-size:14px;">
-You are a math problem grader. Given a student's solution and the correct answer, determine if the solution contains the correct answer.
+    <div class="section">
+        <h2>Evaluation Prompt</h2>
+        <p class="center">
+            We use an LLM-based evaluator with the following prompt:
+        </p>
+
+        <div class="prompt-box">
+<pre>You are a math problem grader. Given a student's solution and the correct answer, determine if the solution contains the correct answer.
 
 Student's Solution:
 {solution}
@@ -36,9 +99,47 @@ Instructions:
 2. The answer format may differ (e.g., "3.14" vs "π", "1/2" vs "0.5"), but the value should be equivalent
 3. Respond with ONLY "CORRECT" or "INCORRECT"
 
-Your judgment:
-</pre>
-</div>
+Your judgment:</pre>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Lexical vs. Semantic Consistency</h2>
+
+        <p class="note">
+            We construct controlled examples to highlight the limitation of lexical similarity
+            and the importance of semantic correctness. Semantically equivalent statements may
+            have different surface forms, while lexically similar statements may still differ
+            in factual correctness.
+        </p>
+
+        <h3 class="small-gap">Word Order Variations (Semantically Equivalent)</h3>
+        <div class="example-box">
+            <ul>
+                <li>The capital of Italy is Rome</li>
+                <li>Rome is the capital of Italy</li>
+                <li>Italy's capital is Rome</li>
+                <li>Rome is Italy's capital</li>
+                <li>Italy has Rome as its capital</li>
+            </ul>
+        </div>
+
+        <h3 class="small-gap">Factual Variations (Lexically Similar but Incorrect)</h3>
+        <div class="example-box">
+            <ul>
+                <li>The capital of Italy is Rome</li>
+                <li>The capital of Italy is Naples</li>
+                <li>The capital of Italy is Milan</li>
+                <li>The capital of Italy is Venice</li>
+                <li>The capital of Italy is Turin</li>
+            </ul>
+        </div>
+
+        <p class="note" style="font-style: italic; margin-top: 20px;">
+            This example illustrates that lexical similarity alone is insufficient for reliable
+            hallucination detection, motivating our representation-level approach.
+        </p>
+    </div>
 
 </body>
 </html>
